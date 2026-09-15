@@ -1,0 +1,92 @@
+---
+title: "DWV Assignment 4"
+Author: "Josh Arden"
+format: 
+  html: default
+  docx: default
+editor: source
+---
+
+```{r}
+library(readr)
+```
+
+# part 1
+
+```{r}
+plot(NA, xlim = c(-20,20), ylim = c(-20,20), xlab="x", ylab = "y", main = "y = 4x + 3", asp = 1)
+abline(h = 0,v = 0, col = "black")
+grid()
+abline(a =3, b = 4, col = "forestgreen", lwd = 2.5, lty = "dashed" )
+text(3,17, "y = 4x + 3" , col = "gold", font = 2)
+```
+
+# part 2 q1
+
+```{r}
+protected_lands <- read_csv("protected_lands.csv")
+mean(protected_lands$protected_lands)
+sd(protected_lands$protected_lands)
+range(protected_lands$protected_lands)
+
+mean(protected_lands$gdp_percap)
+sd(protected_lands$gdp_percap)
+range(protected_lands$tot_gdp_bilions)
+
+mean(protected_lands$tot_gdp_bilions)
+sd(protected_lands$tot_gdp_bilions)
+range(protected_lands$tot_gdp_bilions)
+```
+
+# p2q2
+
+```{r}
+plot(protected_lands$gdp_percap, protected_lands$protected_lands,
+main = "Protected Lands vs. GDP per Capital",
+xlab = "GDP per Capita",
+ylab = "Protected Lands (% of Total Land Area)",
+pch = 19)
+```
+
+# p2q3
+
+```{r}
+plot(protected_lands$tot_gdp_bilions, protected_lands$protected_lands,
+main = "Protected Lands vs. Total GDP",
+xlab = "GDP per Capita",
+ylab = "Protected Lands (% of Total Land Area)",
+pch = 19)
+```
+
+# p2q4
+
+```{r}
+model <- lm(protected_lands ~ gdp_percap , data = protected_lands)
+```
+
+
+# p2q5
+```{r}
+plot(protected_lands$gdp_percap, protected_lands$protected_lands,
+main = "Protected Lands vs. GDP per Capita",
+xlab = "GDP per Capita",
+ylab = "Protected Lands (% of Total Land Area)",
+pch = 19)
+abline(model, col = "blue", lwd = 2)
+```
+
+# p2q6
+
+```{r}
+model2 <- lm(protected_lands ~ tot_gdp_bilions , data = protected_lands)
+```
+
+```{r}
+plot(protected_lands$tot_gdp_bilions, protected_lands$protected_lands,
+main = "Protected Lands vs. Total GDP",
+xlab = "Total GDP",
+ylab = "Protected Lands (% of Total Land Area)",
+pch = 19)
+abline(model, col = "blue", lwd = 2)
+```
+
